@@ -1,0 +1,40 @@
+{
+    "name": "pentagonal/modular-cli",
+    "type": "library",
+    "require": {
+        "php": ">= 7.0.8",
+        "doctrine/dbal": "^2.5",
+        "pimple/pimple": "^3",
+        "psr/container": "^1.0",
+        "container-interop/container-interop": "^1.2",
+        "symfony/console": "^3.3",
+        "guzzlehttp/guzzle": "^6",
+        "phpfastcache/phpfastcache" : "^6"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "2.*"
+    },
+    "license": "MIT",
+    "autoload" : {
+        "psr-4" : {
+            "Pentagonal\\ModularCLI\\Bin\\ComposerScript\\" : "src/bin/ComposerScript/",
+            "Pentagonal\\ModularCLI\\Source\\" : "src/package/Source/",
+            "Pentagonal\\ModularCLI\\Util\\" : "src/package/Util/"
+        }
+    },
+    "scripts" : {
+        "pre-update-cmd" : [
+        ],
+        "post-update-cms" : [
+            "Pentagonal\\ModularCLI\\Bin\\ComposerScript\\Installer::postUpdate"
+        ],
+        "pre-install-cmd" : [
+        ],
+        "post-install-cmd" : [
+            "Pentagonal\\ModularCLI\\Bin\\ComposerScript\\Installer::postInstall"
+        ],
+        "build"   : "@php src/bin/composer-cli.php --build",
+        "clean"   : "@php src/bin/composer-cli.php --clean-all",
+        "rebuild" : "@php src/bin/composer-cli.php --rebuild"
+    }
+}
